@@ -1,0 +1,27 @@
+<script>
+function fetchName(form) {
+
+  fetch("http://127.0.0.1:5000/name?my-name=" + form.fname.value)
+  .then(function (response) {
+    return response.text();
+  })
+  .then(function(name) {
+    document.querySelector("#yourName").innerHTML = "Your Name is " + name;
+    return;
+  })
+  .catch(function (error) {
+    console.log("Error: " + error);
+    return;
+  });
+}
+</script>
+<html>
+<body>
+ <form name="nameForm" action="" onsubmit="return fetchName()">
+  <label for="fname">Input Your Name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <input type="button" name="button" value="Submit" onClick="fetchName(this.form)">
+</form>
+ <h1 id=yourName>Your Name is </h1>
+</body>
+</html>
